@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -53,5 +54,10 @@ class User extends Authenticatable
     public function getImageAttribute()
     {
         return $this->photo ? Storage::url($this->photo) : url('nouser.jpg');
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
     }
 }
