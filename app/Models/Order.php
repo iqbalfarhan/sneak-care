@@ -53,7 +53,7 @@ class Order extends Model
         return $this->belongsTo(User::class, 'kasir_id');
     }
 
-    public function technisi()
+    public function teknisi()
     {
         return $this->belongsTo(User::class, 'teknisi_id');
     }
@@ -71,5 +71,10 @@ class Order extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function orderitems()
+    {
+        return $this->hasMany(Orderitem::class);
     }
 }

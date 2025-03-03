@@ -3,19 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Models\Orderitem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class OrderitemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $orders = Auth::user()->shop->orders;
-        return $orders->load(['kasir', 'orderitems', 'payment', 'customer' ]);
+        //
     }
 
     /**
@@ -29,23 +27,15 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Orderitem $orderitem)
     {
-        return $order->load([
-            'kasir',
-            'teknisi',
-            'payment',
-            'discount',
-            'customer',
-            'orderitems',
-            'orderitems.service',
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Orderitem $orderitem)
     {
         //
     }
@@ -53,7 +43,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Orderitem $orderitem)
     {
         //
     }
