@@ -32,7 +32,7 @@ class AuthController extends Controller
         $valid = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         $shop = Shop::create($valid);
