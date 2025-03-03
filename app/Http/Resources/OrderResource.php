@@ -40,6 +40,7 @@ class OrderResource extends JsonResource
             'pelanggan' => $this->customer,
             'diskon' => $this->discount,
             'payment' => $this->payment,
+            'paid' => $this->paid,
         ];
     }
 }
