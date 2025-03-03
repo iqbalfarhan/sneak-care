@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +42,7 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return $request->user()->load('shop');
+        return new UserResource($request->user());
     }
 
     public function shop(Request $request)
