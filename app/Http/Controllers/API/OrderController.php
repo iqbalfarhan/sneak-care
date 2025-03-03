@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,15 +32,17 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return $order->load([
-            'kasir',
-            'teknisi',
-            'payment',
-            'discount',
-            'customer',
-            'orderitems',
-            'orderitems.service',
-        ]);
+        // return $order->load([
+        //     'kasir',
+        //     'teknisi',
+        //     'payment',
+        //     'discount',
+        //     'customer',
+        //     'orderitems',
+        //     'orderitems.service',
+        // ]);
+
+        return new OrderResource($order);
     }
 
     /**
