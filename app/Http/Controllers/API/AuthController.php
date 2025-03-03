@@ -46,6 +46,6 @@ class AuthController extends Controller
 
     public function shop(Request $request)
     {
-        return $request->user()->shop->load('customers', 'payments', 'payments.bank', 'services');
+        return $request->user()->shop;
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BankController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\DiscountController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ServiceController;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/payment', PaymentController::class);
     Route::apiResource('/service', ServiceController::class);
     Route::apiResource('/discount', DiscountController::class);
+    Route::apiResource('/order', OrderController::class);
 });
 
 Route::post('/login', [AuthController::class, 'login']);
