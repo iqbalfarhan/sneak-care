@@ -7,6 +7,7 @@ use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
 {
@@ -62,7 +63,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $request->only(['teknisi_id','paid','status']);
+
+        $valid = $request->validate([
+            'teknisi_id' => 'numeric',
+            'paid' => 'boolean',
+            'status' => "in:draft,progress,done,complete,cancelled",
+        ]);
+
+        $order->update($valid);
+        return new OrderResource($order);
     }
 
     /**
@@ -70,6 +80,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return response()->json(null, 204);
     }
 }
