@@ -16,7 +16,8 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Auth::user()->shop->orders;
-        return $orders->load(['kasir', 'orderitems', 'payment', 'customer' ]);
+        // return $orders->load(['kasir', 'orderitems', 'payment', 'customer' ]);
+        return OrderResource::collection($orders);
     }
 
     /**
