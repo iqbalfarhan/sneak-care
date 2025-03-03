@@ -16,7 +16,6 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Auth::user()->shop->orders;
-        // return $orders->load(['kasir', 'orderitems', 'payment', 'customer' ]);
         return OrderResource::collection($orders);
     }
 
@@ -25,7 +24,29 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid = $request->validate([
+            'payment_id' => '',
+            'discount_id' => '',
+            'customer_id' => 'required',
+            'estimate_date' => 'required|date',
+            'shipping_cost' => '',
+            'total_pay' => '',
+            'barang' => 'required|array',
+        ]);
+
+        $valid['shop_id'] = Auth::user()->shop->id;
+        $valid['kasir_id'] = Auth::id();
+
+        $order = Order::create($valid);
+
+        foreach ($valid['barang'] as $item) {
+            $order->orderitems()->create([
+                'name' => $item['name'],
+                'service_id' => $item['service_id'],
+            ]);
+        }
+
+        return new OrderResource($order);
     }
 
     /**
@@ -33,16 +54,6 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        // return $order->load([
-        //     'kasir',
-        //     'teknisi',
-        //     'payment',
-        //     'discount',
-        //     'customer',
-        //     'orderitems',
-        //     'orderitems.service',
-        // ]);
-
         return new OrderResource($order);
     }
 
