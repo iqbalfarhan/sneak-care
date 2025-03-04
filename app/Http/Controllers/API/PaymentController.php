@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,10 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        return Auth::user()->shop->payments->load('bank');
+        $shop_id = Auth::user()->shop->id;
+        $banks = Payment::where('shop_id', $shop_id)->get();
+        
+        return PaymentResource::collection($banks);
     }
 
     /**
