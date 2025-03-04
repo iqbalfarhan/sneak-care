@@ -16,6 +16,14 @@
         <li>
             <h2 class="menu-title">Pengaturan</h2>
             <ul>
+                @can('bank.index')
+                    <li>
+                        <a href="{{ route('bank.index') }}" @class(['active' => Route::is('bank.index')]) wire:navigate>
+                            <x-tabler-users class="size-5" />
+                            <span>Daftar bank</span>
+                        </a>
+                    </li>
+                @endcan
                 @can('shop.index')
                     <li>
                         <a href="{{ route('shop.index') }}" @class(['active' => Route::is('shop.index')]) wire:navigate>

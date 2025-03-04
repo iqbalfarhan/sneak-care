@@ -23,4 +23,5 @@ Route::middleware('auth')->group(function(){
     Route::middleware('can:user.index')->get('/user', \App\Livewire\Pages\User\Index::class)->name('user.index');
     Route::middleware('can:permission.index')->get('/permission', \App\Livewire\Pages\Permission\Index::class)->name('permission.index');
     Route::middleware('can:shop.index')->get('/shop', \App\Livewire\Pages\Shop\Index::class)->name('shop.index');
+    Route::middleware('can:bank.index')->get('/bank', \App\Livewire\Pages\Bank\Index::class)->name('bank.index');
 });

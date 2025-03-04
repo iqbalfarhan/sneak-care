@@ -16,7 +16,8 @@
         <table class="table">
             <thead>
                 <th>No</th>
-                <th>Other</th>
+                <th>Name</th>
+                <th>Logo</th>
                 @canany(['bank.edit', 'bank.delete'])
                     <th class="text-center">Actions</th>
                 @endcanany
@@ -25,7 +26,16 @@
                 @foreach ($datas as $data)
                     <tr wire:key="{{ $data->id }}">
                         <td>{{ $no++ }}</td>
-                        <td></td>
+                        <td>{{ $data->name }}</td>
+                        <td>
+                            @if ($data->logo)
+                            <div class="avatar">
+                                <div class="size-6">
+                                    <img src={{Storage::url($data->logo)}} />
+                                </div>
+                            </div>
+                            @endif
+                        </td>
                         @canany(['bank.edit', 'bank.delete'])
                             <td>
                                 <div class="flex gap-1 justify-center">

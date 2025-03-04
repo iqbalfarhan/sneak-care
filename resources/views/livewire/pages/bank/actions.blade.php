@@ -14,6 +14,15 @@
                     ]) wire:model="form.name"
                         placeholder="Nama lengkap bank" />
                 </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text">Bank logo</span>
+                    </div>
+                    <input type="file" @class([
+                        'file-input file-input-bordered',
+                        'file-input-error' => $errors->first('photo'),
+                    ]) wire:model="photo" />
+                </label>
             </div>
             <div class="modal-action justify-between">
                 <button type="button" wire:click="resetForm" class="btn btn-ghost">Close</button>
