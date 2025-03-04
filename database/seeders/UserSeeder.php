@@ -19,15 +19,15 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole("superadmin");
 
-        $user = User::factory()->create([
-            "name" => "User Contoh",
-            "email" => "user@gmail.com",
-            "password" => "user",
-        ]);
-        $user->assignRole("kasir");
+        // $user = User::factory()->create([
+        //     "name" => "User Contoh",
+        //     "email" => "user@gmail.com",
+        //     "password" => "user",
+        // ]);
+        // $user->assignRole("kasir");
 
-        User::factory(10)
-            ->create()
-            ->each(fn($user) => $user->assignRole(fake()->randomElement(['kasir', 'teknisi'])));
+        // User::factory(10)
+        //     ->create()
+        //     ->each(fn($user) => $user->assignRole(fake()->randomElement(['kasir', 'teknisi'])));
     }
 }

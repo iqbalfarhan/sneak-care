@@ -13,6 +13,19 @@ class BankSeeder extends Seeder
      */
     public function run(): void
     {
-        Bank::factory(10)->create();
+        $banks = [
+            ['name' => 'Bank BNI'],
+            ['name' => 'Bank BSI'],
+            ['name' => 'Bank BRI'],
+            ['name' => 'Bank Mandiri'],
+            ['name' => 'E-Wallet LinkAja'],
+            ['name' => 'E-Wallet Dana'],
+            ['name' => 'E-Wallet OVO'],
+            ['name' => 'E-Wallet GoPay'],
+        ];
+
+        foreach ($banks as $bank) {
+            Bank::create($bank);
+        }
     }
 }

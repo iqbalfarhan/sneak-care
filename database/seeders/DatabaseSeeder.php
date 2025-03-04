@@ -17,15 +17,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
 
-            ShopSeeder::class,
-
             BankSeeder::class,
-            UserSeeder::class,
-
-            CustomerSeeder::class,
-            PaymentSeeder::class,
-            ServiceSeeder::class,
-            DiscountSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

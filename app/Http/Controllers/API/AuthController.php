@@ -8,6 +8,8 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -64,6 +66,43 @@ class AuthController extends Controller
     {
         return new UserResource($request->user());
     }
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $validatedData = $request->validate([
+            "name" => "nullable|string|max:255",
+            "email" => "nullable|email|unique:users,email,$user->id",
+            "photo" => "nullable|image|max:2048",
+        ]);
+        $user->update($validatedData);
+
+        return new UserResource($user);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = $request->user();
+
+        $validated = $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($validated['current_password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'current_password' => ['Password lama salah.'],
+            ]);
+        }
+
+        $user->update([
+            'password' => Hash::make($validated['new_password']),
+        ]);
+
+        return response()->json(['message' => 'Password berhasil diubah.']);
+    }
+
 
     public function shop(Request $request)
     {

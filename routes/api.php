@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/user', [AuthController::class, 'profile']);
+    Route::post('/change-password', [AuthController::class, 'changePassword']);
     Route::get('/shop', [AuthController::class, 'shop']);
     Route::get('/bank', [BankController::class, 'index']);
 
