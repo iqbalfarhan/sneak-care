@@ -32,6 +32,7 @@ class OrderController extends Controller
             'estimate_date' => 'required|date',
             'shipping_cost' => '',
             'total_pay' => '',
+            'paid' => '',
             'barang' => 'required|array',
         ]);
 

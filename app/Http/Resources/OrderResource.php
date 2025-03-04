@@ -41,6 +41,7 @@ class OrderResource extends JsonResource
             'diskon' => $this->discount,
             'payment' => $this->payment,
             'paid' => $this->paid,
+            'total_pay' => $this->total_pay,
         ];
     }
 }
